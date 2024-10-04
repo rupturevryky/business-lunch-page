@@ -52,27 +52,21 @@
     section>div {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        /* Количество колонок: 3 */
         gap: 10px;
-        /* Отступ между элементами */
     }
 
     section>h2 {
         text-align: center;
-        /* Выравнивание текста по центру */
     }
 }
 
-/* Стили для экранов шириной ≤600px */
 @media (max-width: 600px) {
     section>div {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        /* Количество колонок: 1 */
     }
 
     section>h2 {
         text-align: center;
-        /* Выравнивание текста по центру */
     }
 }
