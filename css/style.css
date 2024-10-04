@@ -10,7 +10,9 @@ a {
     color: inherit;
 }
 
-
+th {
+    padding: 3px;
+}
 
 h2 {
     margin: 10px 0 10px;
@@ -57,6 +59,10 @@ header>h1 {
 }
 
 #headerNav>li>a.active {
+    color: tomato;
+}
+
+#headerNav>li>a:hover {
     color: tomato;
 }
 
