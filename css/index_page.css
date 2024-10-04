@@ -1,0 +1,21 @@
+@media (max-width: 600px) {
+    #self {
+        width: 500;
+    }
+}
+
+@media (max-width: 600px) {
+    #food {
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    table {
+        font-size: 12px;
+    }
+}

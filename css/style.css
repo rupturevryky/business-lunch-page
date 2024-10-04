@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
 h2 {
     margin: 10px 0 10px;
 }
@@ -34,13 +41,23 @@ header>h1 {
     cursor: pointer;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+/* #headerNav>li:nth-child(2) {
+    color: orange;
+} */
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-#headerNav>li:nth-child(2) {
-    color: orange;
+#headerNav>li>a {
+    text-decoration: none;
+    color: black;
+}
+
+#headerNav>li>a.active {
+    color: tomato;
 }
 
 body {
