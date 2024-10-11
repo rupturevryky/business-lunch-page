@@ -5,14 +5,11 @@
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD:style.css
-=======
 a {
     text-decoration: none;
     color: inherit;
 }
 
->>>>>>> lab3:css/style.css
 th {
     padding: 3px;
 }
@@ -56,8 +53,6 @@ header>h1 {
     gap: 15px;
 }
 
-<<<<<<< HEAD:style.css
-=======
 #headerNav>li>a {
     text-decoration: none;
     color: black;
@@ -67,7 +62,6 @@ header>h1 {
     color: tomato;
 }
 
->>>>>>> lab3:css/style.css
 #headerNav>li>a:hover {
     color: tomato;
 }
