@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD:style.css
+=======
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+>>>>>>> lab3:css/style.css
 th {
     padding: 3px;
 }
@@ -38,11 +46,28 @@ header>h1 {
     cursor: pointer;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+/* #headerNav>li:nth-child(2) {
+    color: orange;
+} */
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
+<<<<<<< HEAD:style.css
+=======
+#headerNav>li>a {
+    text-decoration: none;
+    color: black;
+}
+
+#headerNav>li>a.active {
+    color: tomato;
+}
+
+>>>>>>> lab3:css/style.css
 #headerNav>li>a:hover {
     color: tomato;
 }
