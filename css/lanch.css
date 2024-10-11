@@ -70,3 +70,65 @@
         text-align: center;
     }
 }
+
+.order-form {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.customer-order,
+.customer-data {
+    flex: 1;
+    margin: 10px;
+}
+
+
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+.subscribe {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.subscribe>#subscribe {
+    width: 20px;
+    margin: 5px;
+}
+
+.time_checkbox>div {
+    display: flex;
+    align-items: center;
+}
+
+select,
+input,
+textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.form_button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    width: 49%;
+}
+
+.form_buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subscribe_time {
+    width: 20px;
+    margin: 5px;
+}

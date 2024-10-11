@@ -32,21 +32,21 @@
                 <div class="dish_container">
                     <img src="/img/суп/гаспачо.png" alt="суп" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Гаспачо</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
                 <div class="dish_container">
                     <img src="/img/суп/грибной.png" alt="суп" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Грибной</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
                 <div class="dish_container">
                     <img src="/img/суп/норвежский.png" alt="суп" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Норвежский</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
@@ -59,21 +59,21 @@
                 <div class="dish_container">
                     <img src="/img/главное/картошка.png" alt="главное" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Картошка</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
                 <div class="dish_container">
                     <img src="/img/главное/котлеты.png" alt="главное" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Котлеты</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
                 <div class="dish_container">
                     <img src="/img/главное/лазанья.png" alt="главное" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Лазанья</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
@@ -86,28 +86,104 @@
                 <div class="dish_container">
                     <img src="/img/напиток/апельсиновый.png" alt="напиток" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Апельсиновый</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
                 <div class="dish_container">
-                    <img src="/img/напиток/морской.png" alt="напиток" class="dish_image">
+                    <img src="/img/напиток/морковный.png" alt="напиток" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Морковный</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
                 <div class="dish_container">
                     <img src="/img/напиток/яблочный.png" alt="напиток" class="dish_image">
                     <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Название блюда</p>
+                    <p class="dish_title">Яблочный</p>
                     <p class="dish_weight">Вес: 250 г</p>
                     <button class="dish_button">Заказать</button>
                 </div>
             </div>
         </section>
 
+        <div>
+            <h2 style="text-align: center;">Сделать заказ</h2>
+            <form action="https://httpbin.org/post" method="POST" class="order-form">
+                <div class="customer-order">
+                    <h3>Заказ клиента</h3>
+                    <label for="soup">Суп:</label>
+                    <select id="soup" name="soup" required>
+                        <option value="">Выберите суп</option>
+                        <option value="chicken">Гаспачо</option>
+                        <option value="vegetable">Норвежский</option>
+                        <option value="mushroom">Грибной</option>
+                    </select>
 
+                    <label for="main-dish">Главное блюдо:</label>
+                    <select id="main-dish" name="main-dish" required>
+                        <option value="">Выберите главное блюдо</option>
+                        <option value="steak">Картошка</option>
+                        <option value="pasta">Котлеты</option>
+                        <option value="salad">Лазанья</option>
+                    </select>
+
+                    <label for="drink">Напиток:</label>
+                    <select id="drink" name="drink" required>
+                        <option value="">Выберите напиток</option>
+                        <option value="water">Апельсиновый сок</option>
+                        <option value="juice">морковный сок</option>
+                        <option value="soda">яблочный сок</option>
+                    </select>
+
+                    <label for="comments">Комментарии:</label>
+                    <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+                </div>
+
+                <div class="customer-data">
+                    <h3>Данные клиента</h3>
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="subscribe" class="subscribe">
+                        <input type="checkbox" id="subscribe" name="subscribe" checked>
+                        <p>Я согласен получать информацию (подписка на рассылку)</p>
+                    </label>
+
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="address">Адрес:</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label class="time_checkbox">Выберите время доставки:
+                        <div>
+                            <input type="radio" id="delivery-time-radio-1" class="subscribe_time"
+                                name="delivery-time-radio" required>
+                            <label for="delivery-time-radio-1">Как можно быстрее</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="delivery-time-radio-2" class="subscribe_time"
+                                name="delivery-time-radio" required>
+                            <label for="delivery-time-radio-2">К указанному времени</label>
+                        </div>
+                    </label>
+
+                    <label for="delivery-time">Указание времени доставки:</label>
+                    <input type="time" id="delivery-time" name="delivery-time" min="07:00" max="23:00" step="300"
+                        required>
+
+                    <section class="form_buttons">
+                        <button type="reset" class="form_button">Сбросить</button>
+                        <button type="submit" class="form_button" id="form_button">Отправить</button>
+                    </section>
+
+                </div>
+            </form>
+        </div>
     </main>
 
     <footer id="footer">
