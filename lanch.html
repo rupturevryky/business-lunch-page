@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/lanch.css">
+    <script src="./js/menu.js"></script>
+    <script src="./js/displayDishes.js"></script>
+    <script src="./js/orderForm.js"></script>
 </head>
 
 <body>
@@ -28,116 +31,28 @@
     <main>
         <section>
             <h2>Выберете суп</h2>
-            <div class="dish_block">
-                <div class="dish_container">
-                    <img src="/img/суп/гаспачо.png" alt="суп" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Гаспачо</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-                <div class="dish_container">
-                    <img src="/img/суп/грибной.png" alt="суп" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Грибной</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-                <div class="dish_container">
-                    <img src="/img/суп/норвежский.png" alt="суп" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Норвежский</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-            </div>
+            <div class="dish_block"> </div>
         </section>
 
         <section>
             <h2>Выберете главное блюдо</h2>
-            <div class="dish_block">
-                <div class="dish_container">
-                    <img src="/img/главное/картошка.png" alt="главное" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Картошка</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-                <div class="dish_container">
-                    <img src="/img/главное/котлеты.png" alt="главное" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Котлеты</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-                <div class="dish_container">
-                    <img src="/img/главное/лазанья.png" alt="главное" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Лазанья</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-            </div>
+            <div class="dish_block"> </div>
         </section>
 
         <section>
             <h2>Выберете напиток</h2>
-            <div class="dish_block">
-                <div class="dish_container">
-                    <img src="/img/напиток/апельсиновый.png" alt="напиток" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Апельсиновый</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-                <div class="dish_container">
-                    <img src="/img/напиток/морковный.png" alt="напиток" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Морковный</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-                <div class="dish_container">
-                    <img src="/img/напиток/яблочный.png" alt="напиток" class="dish_image">
-                    <p class="dish_price">Цена: 500 руб.</p>
-                    <p class="dish_title">Яблочный</p>
-                    <p class="dish_weight">Вес: 250 г</p>
-                    <button class="dish_button">Заказать</button>
-                </div>
-            </div>
+            <div class="dish_block"> </div>
         </section>
 
         <div>
             <h2 style="text-align: center;">Сделать заказ</h2>
             <form action="https://httpbin.org/post" method="POST" class="order-form">
                 <div class="customer-order">
-                    <h3>Заказ клиента</h3>
-                    <label for="soup">Суп:</label>
-                    <select id="soup" name="soup" required>
-                        <option value="">Выберите суп</option>
-                        <option value="chicken">Гаспачо</option>
-                        <option value="vegetable">Норвежский</option>
-                        <option value="mushroom">Грибной</option>
-                    </select>
-
-                    <label for="main-dish">Главное блюдо:</label>
-                    <select id="main-dish" name="main-dish" required>
-                        <option value="">Выберите главное блюдо</option>
-                        <option value="steak">Картошка</option>
-                        <option value="pasta">Котлеты</option>
-                        <option value="salad">Лазанья</option>
-                    </select>
-
-                    <label for="drink">Напиток:</label>
-                    <select id="drink" name="drink" required>
-                        <option value="">Выберите напиток</option>
-                        <option value="water">Апельсиновый сок</option>
-                        <option value="juice">морковный сок</option>
-                        <option value="soda">яблочный сок</option>
-                    </select>
-
-                    <label for="comments">Комментарии:</label>
-                    <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+                    <h3>Ваш заказ</h3>
+                    <p id="soup-order">Ничего не выбрано</p>
+                    <p id="main-order">Ничего не выбрано</p>
+                    <p id="drink-order">Ничего не выбрано</p>
+                    <!-- Этот элемент создается и обновляется в orderForm.js -->
                 </div>
 
                 <div class="customer-data">
@@ -183,6 +98,8 @@
 
                 </div>
             </form>
+            <script src="./js/orderValidation.js"></script>
+
         </div>
     </main>
 
