@@ -1,32 +1,56 @@
-// orderForm.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const selectedDishes = { soup: null, main: null, drink: null };
+    const orderCostDisplay = document.querySelector('#order-cost');
     const orderSection = document.querySelector('.customer-order');
-    const orderCostDisplay = document.createElement('div');
-    orderCostDisplay.classList.add('order-cost');
-    orderSection.appendChild(orderCostDisplay);
 
-    // Обновить блок с выбранными блюдами и стоимость
+    // Функция для обновления блока с выбранными блюдами и стоимостью
     const updateOrderDisplay = () => {
         let totalCost = 0;
+        let somethingSelected = false;
+
+        // Убираем сообщение "Ничего не выбрано", если оно есть
+        const nothingSelectedElement = document.querySelector('.nothing-selected');
+        if (nothingSelectedElement) {
+            nothingSelectedElement.remove();
+        }
+
+        // Проходим по категориям: суп, главное блюдо, напиток
         ['soup', 'main', 'drink'].forEach(category => {
             const selectedDish = selectedDishes[category];
             const displayElement = document.querySelector(`#${category}-order`);
+
+            // Если блюдо выбрано, показываем его, иначе показываем текст "Блюдо не выбрано"
             if (selectedDish) {
-                displayElement.textContent = `${selectedDish.name}: ${selectedDish.price} руб.`;
+                displayElement.innerHTML = `<strong>${category === 'soup' ? 'Суп' : category === 'main' ? 'Главное блюдо' : 'Напиток'}:</strong> ${selectedDish.name} ${selectedDish.price}₽`;
+                displayElement.style.display = 'block'; // Отображаем категорию
                 totalCost += selectedDish.price;
+                somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
             } else {
-                displayElement.textContent = `${category === 'drink' ? 'Напиток' : 'Блюдо'} не выбрано`;
+                displayElement.innerHTML = `<strong>${category === 'soup' ? 'Суп' : category === 'main' ? 'Главное блюдо' : 'Напиток'}:</strong> Блюдо не выбрано`;
+                if (somethingSelected) {
+                    displayElement.style.display = 'block'; // Отображаем пустые категории только если что-то выбрано
+                } else {
+                    displayElement.style.display = 'none'; // Скрываем, если ничего не выбрано
+                }
             }
         });
 
-        // Итоговая стоимость
+        // Если ни одно блюдо не выбрано, отображаем сообщение "Ничего не выбрано"
+        if (!somethingSelected) {
+            document.querySelectorAll('.order-category').forEach(category => {
+                category.style.display = 'none'; // Скрываем все категории
+            });
+            if (!document.querySelector('.nothing-selected')) {
+                orderSection.insertAdjacentHTML('beforeend', `<p class="nothing-selected">Ничего не выбрано</p>`);
+            }
+        }
+
+        // Обновляем итоговую стоимость заказа
         if (totalCost > 0) {
-            orderCostDisplay.textContent = `Стоимость заказа: ${totalCost} руб.`;
-            orderCostDisplay.style.display = 'block';
+            orderCostDisplay.textContent = `Стоимость заказа: ${totalCost}₽`;
+            orderCostDisplay.style.display = 'block'; // Показать стоимость, если есть сумма
         } else {
-            orderCostDisplay.style.display = 'none';
+            orderCostDisplay.style.display = 'none'; // Скрыть стоимость, если сумма 0
         }
     };
 
@@ -43,4 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Инициализация при загрузке страницы
+    updateOrderDisplay();
 });

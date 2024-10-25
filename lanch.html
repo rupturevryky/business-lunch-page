@@ -48,11 +48,19 @@
             <h2 style="text-align: center;">Сделать заказ</h2>
             <form action="https://httpbin.org/post" method="POST" class="order-form">
                 <div class="customer-order">
-                    <h3>Ваш заказ</h3>
-                    <p id="soup-order">Ничего не выбрано</p>
-                    <p id="main-order">Ничего не выбрано</p>
-                    <p id="drink-order">Ничего не выбрано</p>
-                    <!-- Этот элемент создается и обновляется в orderForm.js -->
+                    <h3 style="padding-bottom: 10px;">Ваш заказ</h3>
+
+                    <p class="nothing-selected">Ничего не выбрано</p> <!-- По умолчанию показывается только это -->
+                    <div class="order-category" id="soup-order" style="display:none;">
+                        <strong>Суп:</strong> <span>Ничего не выбрано</span>
+                    </div>
+                    <div class="order-category" id="main-order" style="display:none;">
+                        <strong>Главное блюдо:</strong> <span>Ничего не выбрано</span>
+                    </div>
+                    <div class="order-category" id="drink-order" style="display:none;">
+                        <strong>Напиток:</strong> <span>Ничего не выбрано</span>
+                    </div>
+                    <p id="order-cost" style="display:none;"></p>
                 </div>
 
                 <div class="customer-data">
