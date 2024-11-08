@@ -85,7 +85,6 @@ const btn_order_update = () => {
             const dishKeyword = dishCard.dataset.dish;
 
             const selectedDish = dishes.find(dish => dish.keyword === dishKeyword);
-            console.log(dishKeyword);
 
             if (selectedDish) {
                 selectedDishes[selectedDish.category] = selectedDish;
