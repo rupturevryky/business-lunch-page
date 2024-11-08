@@ -156,3 +156,11 @@ textarea {
 button {
     cursor: pointer;
 }
+
+.dish_nav_button {
+    color: darkgreen;
+    background-color: white;
+    border: 0;
+    font-size: large;
+    margin: 10px;
+}
