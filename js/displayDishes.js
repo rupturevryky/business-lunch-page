@@ -52,8 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.style.backgroundColor = ''; // Сбрасываем цвет
             });
 
-            kinds.State = event.target.name;
-            event.target.style.backgroundColor = "lightgreen"
+            if (kinds.State != event.target.name) {
+                kinds.State = event.target.name;
+                event.target.style.backgroundColor = "lightgreen"
+            } else kinds.State = ''
 
             soupContainer.innerHTML = ""
             mainContainer.innerHTML = ""
