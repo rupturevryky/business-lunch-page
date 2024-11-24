@@ -34,7 +34,7 @@ const updateOrderDisplay = () => {
     }
 
     // Проходим по категориям: суп, главное блюдо, напиток
-    ['soup', 'main_course', 'beverages', 'salads_starters', 'desserts'].forEach(category => {
+    Object.keys(menu).forEach(category => {
         const selectedDish = selectedDishes[category];
         const displayElement = document.querySelector(`#${category}-order`);
 
@@ -86,6 +86,7 @@ const btn_order_update = () => {
 
             const selectedDish = dishes.find(dish => dish.keyword === dishKeyword);
             menu[selectedDish.category].selected = true;
+            menu[selectedDish.category].now_dish = dishKeyword;
 
             if (selectedDish) {
                 selectedDishes[selectedDish.category] = selectedDish;

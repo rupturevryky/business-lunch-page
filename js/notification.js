@@ -30,9 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
             popupText.textContent = "Выберите суп или главное блюдо"
             state = 1
         }
-
-
-
         if (state == 0) popupText.textContent = "Непредвиденная комбинация"
         return state;
     }
@@ -52,6 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputPopupText() == 1) {
             event.preventDefault()
             notification.style.display = 'block';
+        } else {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const menu_keys = Object.keys(menu);
+            for (let dish of menu_keys) if (menu[dish].now_dish) formData.append('food', menu[dish].now_dish);
+
+            // Пример отправки данных на сервер с использованием fetch
+            fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData
+            })
         }
     })
 
