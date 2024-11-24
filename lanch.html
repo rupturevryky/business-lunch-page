@@ -10,9 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/lanch.css">
+    <link rel="stylesheet" href="/css/notification.css">
+    <link rel="stylesheet" href="/css/combo.css">
     <script src="./js/menu.js"></script>
     <script src="./js/displayDishes.js"></script>
     <script src="./js/orderForm.js"></script>
+    <script src="./js/notification.js"></script>
+    <script src="./js/combo_block.js"></script>
+
 </head>
 
 <body>
@@ -29,6 +34,27 @@
     </header>
 
     <main>
+        <div class="dish_combo_with_header">
+            <h2>Доступные для заказа комбо</h2>
+            <div class="dish_combo">
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+            </div>
+        </div>
+
+        <div class="notification" style="display: none;">
+            <div class="overlay displayNotification"></div>
+            <div class="popup">
+                <p>Ваше уведомление!</p>
+                <button class="displayNotification notificationBtn">Окей👌</button>
+            </div>
+        </div>
+
+
         <section>
             <h2 class="dish_header">Выберете суп</h2>
             <div class="dish_block"> </div>

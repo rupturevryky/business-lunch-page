@@ -1,5 +1,33 @@
 // displayDishes.js
 
+let menu = {
+    soup: {
+        selected: false,
+        State: '',
+        Btns: ["мясной", "рыбный", "вегетарианский"]
+    },
+    main_course: {
+        selected: false,
+        State: '',
+        Btns: ["мясное", "рыбное", "вегетарианское"]
+    },
+    salads_starters: {
+        selected: false,
+        State: '',
+        Btns: ["мясной", "рыбный", "вегетарианский"]
+    },
+    beverages: {
+        selected: false,
+        State: '',
+        Btns: ["холодный", "горячий"],
+    },
+    desserts: {
+        selected: false,
+        State: '',
+        Btns: ["маленькая порция", "средняя порция", "большая порция"]
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Загружаем блюда и сортируем их по алфавиту
     const sortedDishes = dishes.sort((a, b) => a.name.localeCompare(b.name));
@@ -16,29 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const saladsHeader = document.querySelector('section:nth-of-type(3) .dish_header');
     const drinkHeader = document.querySelector('section:nth-of-type(4) .dish_header');
     const dessertsHeader = document.querySelector('section:nth-of-type(5) .dish_header');
-
-    let menu = {
-        soup: {
-            State: '',
-            Btns: ["мясной", "рыбный", "вегетарианский"]
-        },
-        main: {
-            State: '',
-            Btns: ["мясное", "рыбное", "вегетарианское"]
-        },
-        salads: {
-            State: '',
-            Btns: ["мясной", "рыбный", "вегетарианский"]
-        },
-        drink: {
-            State: '',
-            Btns: ["холодный", "горячий"],
-        },
-        desserts: {
-            State: '',
-            Btns: ["маленькая порция", "средняя порция", "большая порция"]
-        }
-    }
 
     // Функция для создания кнопок типов блюд
     const createDishKind = (kinds, category) => {
@@ -104,13 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if ((menu.soup.State && dish.kind == menu.soup.State) || !menu.soup.State)
                     soupContainer.appendChild(card);
             } else if (dish.category === 'main_course') {
-                if ((menu.main.State && dish.kind == menu.main.State) || !menu.main.State)
+                if ((menu.main_course.State && dish.kind == menu.main_course.State) || !menu.main_course.State)
                     mainContainer.appendChild(card);
             } else if (dish.category === 'salads_starters') {
-                if ((menu.salads.State && dish.kind == menu.salads.State) || !menu.salads.State)
+                if ((menu.salads_starters.State && dish.kind == menu.salads_starters.State) || !menu.salads_starters.State)
                     saladsContainer.appendChild(card);
             } else if (dish.category === 'beverages') {
-                if ((menu.drink.State && dish.kind == menu.drink.State) || !menu.drink.State)
+                if ((menu.beverages.State && dish.kind == menu.beverages.State) || !menu.beverages.State)
                     drinkContainer.appendChild(card);
             } else if (dish.category === 'desserts') {
                 if ((menu.desserts.State && dish.kind == menu.desserts.State) || !menu.desserts.State)
@@ -120,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     insert_cards();
     soupHeader.appendChild(createDishKind(menu.soup));
-    mainHeader.appendChild(createDishKind(menu.main));
-    saladsHeader.appendChild(createDishKind(menu.salads));
-    drinkHeader.appendChild(createDishKind(menu.drink));
+    mainHeader.appendChild(createDishKind(menu.main_course));
+    saladsHeader.appendChild(createDishKind(menu.salads_starters));
+    drinkHeader.appendChild(createDishKind(menu.beverages));
     dessertsHeader.appendChild(createDishKind(menu.desserts));
 });
