@@ -9,24 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
             state = 1
         }
 
-        if (!menu.beverages.selected) {
+        else if (!menu.beverages.selected) {
             if (menu.main_course.selected || (menu.soup.selected && menu.salads_starters.selected)) {
                 popupText.textContent = "Выберите напиток"
                 state = 1
             }
         }
 
-        if ((menu.desserts.selected || menu.beverages.selected) && !menu.main_course.selected) {
+        else if ((menu.desserts.selected || menu.beverages.selected) && !menu.main_course.selected) {
             popupText.textContent = "Выберите главное блюдо"
             state = 1
         }
 
-        if ((!menu.main_course.selected && !menu.salads_starters.selected) && menu.soup.selected) {
+        else if ((!menu.main_course.selected && !menu.salads_starters.selected) && menu.soup.selected) {
             popupText.textContent = "Выберите главное блюдо/салат/стартер"
             state = 1
         }
 
-        if (!menu.main_course.selected && !menu.soup.selected && menu.salads_starters.selected) {
+        else if (!menu.main_course.selected && !menu.soup.selected && menu.salads_starters.selected) {
             popupText.textContent = "Выберите суп или главное блюдо"
             state = 1
         }
@@ -37,31 +37,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const notification = document.querySelector('.notification');
     const allNotifBtns = document.querySelectorAll('.displayNotification');
+
+    // Закрытие уведомлений по клику
     const closePopup = () => {
         notification.style.display = 'none';
     };
     allNotifBtns.forEach(button =>
         button.addEventListener('click', closePopup)
-    )
+    );
 
-    const form_button = document.querySelector('.order-form')
-    form_button.addEventListener('submit', (event) => {
+    // Обработчик отправки формы
+    const form_button = document.querySelector('.order-form');
+    form_button.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Останавливаем стандартное поведение формы
+
+        // Проверка на ошибку с помощью inputPopupText
         if (inputPopupText() == 1) {
-            event.preventDefault()
             notification.style.display = 'block';
         } else {
-            event.preventDefault();
-
-            const formData = new FormData(event.target);
+            const formData = new FormData(event.target); // Получаем данные формы
             const menu_keys = Object.keys(menu);
-            for (let dish of menu_keys) if (menu[dish].now_dish) formData.append('food', menu[dish].now_dish);
 
-            // Пример отправки данных на сервер с использованием fetch
-            fetch('https://httpbin.org/post', {
-                method: 'POST',
-                body: formData
-            })
+            // Добавляем выбранные блюда в данные формы
+            for (let dish of menu_keys)
+                if (menu[dish].now_dish)
+                    formData.append('food', menu[dish].now_dish);
+
+            try {
+                // Отправляем данные на сервер с использованием fetch
+                const response = await fetch('https://httpbin.org/post', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok)
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+
+                const result = await response.json();
+                console.log('Данные успешно отправлены:', result);
+
+                // Сбрасываем форму после успешной отправки
+                event.target.reset();
+
+            } catch (error) {
+                console.error('Ошибка при отправке данных:', error);
+            }
         }
-    })
+    });
 
 })
