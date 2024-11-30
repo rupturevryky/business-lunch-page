@@ -1,43 +1,10 @@
 // displayDishes.js
 
-let menu = {
-    soup: {
-        now_dish: '',
-        selected: false,
-        State: '',
-        Btns: ["мясной", "рыбный", "вегетарианский"]
-    },
-    main_course: {
-        now_dish: '',
-        selected: false,
-        State: '',
-        Btns: ["мясное", "рыбное", "вегетарианское"]
-    },
-    salads_starters: {
-        now_dish: '',
-        selected: false,
-        State: '',
-        Btns: ["мясной", "рыбный", "вегетарианский"]
-    },
-    beverages: {
-        now_dish: '',
-        selected: false,
-        State: '',
-        Btns: ["холодный", "горячий"],
-    },
-    desserts: {
-        now_dish: '',
-        selected: false,
-        State: '',
-        Btns: ["маленькая порция", "средняя порция", "большая порция"]
-    }
-}
+import { menu } from './main.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Загружаем блюда и сортируем их по алфавиту
+export function displayDishes(dishes) {
     const sortedDishes = dishes.sort((a, b) => a.name.localeCompare(b.name));
 
-    // Контейнеры для секций с блюдами
     const soupContainer = document.querySelector('section:nth-of-type(1) .dish_block');
     const mainContainer = document.querySelector('section:nth-of-type(2) .dish_block');
     const saladsContainer = document.querySelector('section:nth-of-type(3) .dish_block');
@@ -50,13 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const drinkHeader = document.querySelector('section:nth-of-type(4) .dish_header');
     const dessertsHeader = document.querySelector('section:nth-of-type(5) .dish_header');
 
-    // Функция для создания кнопок типов блюд
     const createDishKind = (kinds, category) => {
         const nav = document.createElement('nav');
         nav.className = 'dish_btns';
 
         const cheange_kind = (event) => {
-
             const buttons = nav.querySelectorAll(`.${category}`);
             buttons.forEach(button => {
                 button.style.backgroundColor = ''; // Сбрасываем цвет
@@ -64,34 +29,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (kinds.State != event.target.name) {
                 kinds.State = event.target.name;
-                event.target.style.backgroundColor = "lightgreen"
-            } else kinds.State = ''
+                event.target.style.backgroundColor = "lightgreen";
+            } else kinds.State = '';
 
-            soupContainer.innerHTML = ""
-            mainContainer.innerHTML = ""
-            saladsContainer.innerHTML = ""
-            drinkContainer.innerHTML = ""
-            dessertsContainer.innerHTML = ""
+            soupContainer.innerHTML = "";
+            mainContainer.innerHTML = "";
+            saladsContainer.innerHTML = "";
+            drinkContainer.innerHTML = "";
+            dessertsContainer.innerHTML = "";
             insert_cards();
             btn_order_update();
-        }
+        };
 
         kinds.Btns.forEach(word => {
-            const btn = document.createElement('button'); // Создаем новую кнопку для каждого слова
-            btn.style.padding = "5px"
-            btn.style.borderRadius = "15px"
-            btn.classList.add('dish_nav_button'); // Добавляем первый класс к кнопке
-            btn.classList.add(category); // Добавляем второй класс к кнопке
-            btn.addEventListener('click', cheange_kind); // Добавляем обработчик события клика
-            btn.name = word; // Устанавливаем имя кнопки
-            btn.innerHTML = word; // Устанавливаем текст кнопки
-            nav.appendChild(btn); // Добавляем кнопку в навигацию
+            const btn = document.createElement('button');
+            btn.style.padding = "5px";
+            btn.style.borderRadius = "15px";
+            btn.classList.add('dish_nav_button');
+            btn.classList.add(category);
+            btn.addEventListener('click', cheange_kind);
+            btn.name = word;
+            btn.innerHTML = word;
+            nav.appendChild(btn);
         });
 
-        return nav; // Возвращаем навигацию с кнопками
+        return nav;
     };
 
-    // Функция для создания карточки блюда
     const createDishCard = (dish) => {
         const card = document.createElement('div');
         card.className = 'dish_container';
@@ -106,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     };
 
-    // Разделяем блюда по категориям и добавляем в соответствующие контейнеры
     const insert_cards = () => {
         sortedDishes.forEach(dish => {
             const card = createDishCard(dish);
@@ -127,11 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     dessertsContainer.appendChild(card);
             }
         });
-    }
+    };
+
     insert_cards();
-    soupHeader.appendChild(createDishKind(menu.soup));
-    mainHeader.appendChild(createDishKind(menu.main_course));
-    saladsHeader.appendChild(createDishKind(menu.salads_starters));
-    drinkHeader.appendChild(createDishKind(menu.beverages));
-    dessertsHeader.appendChild(createDishKind(menu.desserts));
-});
+    soupHeader.appendChild(createDishKind(menu.soup, 'soup'));
+    mainHeader.appendChild(createDishKind(menu.main_course, 'main_course'));
+    saladsHeader.appendChild(createDishKind(menu.salads_starters, 'salads_starters'));
+    drinkHeader.appendChild(createDishKind(menu.beverages, 'beverages'));
+    dessertsHeader.appendChild(createDishKind(menu.desserts, 'desserts'));
+}

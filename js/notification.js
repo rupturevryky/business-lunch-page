@@ -1,3 +1,5 @@
+import { menu } from './main.js';
+
 document.addEventListener('DOMContentLoaded', () => {
 
     let popupText = document.querySelector('.popup p')

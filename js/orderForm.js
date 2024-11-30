@@ -1,6 +1,8 @@
+import { menu } from './main.js';
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    const orderSection = document.querySelector('.customer-order');
+    // const orderSection = document.querySelector('.customer-order');
     const textarea = document.getElementById('customer-comment');
 
     textarea.addEventListener('input', function () {
