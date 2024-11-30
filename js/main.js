@@ -2,6 +2,7 @@
 
 import { loadDishes } from './loadDishes.js';
 import { displayDishes } from './displayDishes.js';
+import { btn_order_update } from './orderForm.js';
 
 export let menu = {
     soup: {
@@ -36,14 +37,18 @@ export let menu = {
     }
 };
 
+export let dishes = []; // Экспортируем dishes
+export let selectedDishes = { soup: null, main_course: null, beverages: null, salads_starters: null, desserts: null }; // Экспортируем selectedDishes
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Загружаем блюда
-        const dishes = await loadDishes();
+        dishes = await loadDishes(); // Загружаем блюда и сохраняем их в dishes
 
         if (dishes.length > 0) {
             // Если данные загружены, отображаем блюда
             displayDishes(dishes);
+            btn_order_update(dishes); // Передаем dishes в функцию btn_order_update
         } else {
             console.error('Не удалось загрузить блюда');
         }

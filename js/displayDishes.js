@@ -1,6 +1,7 @@
 // displayDishes.js
 
-import { menu } from './main.js';
+import { menu } from './main.js'; // Импортируем menu
+import { btn_order_update } from './orderForm.js';  // Импортируем функцию btn_order_update
 
 export function displayDishes(dishes) {
     const sortedDishes = dishes.sort((a, b) => a.name.localeCompare(b.name));
@@ -38,7 +39,7 @@ export function displayDishes(dishes) {
             drinkContainer.innerHTML = "";
             dessertsContainer.innerHTML = "";
             insert_cards();
-            btn_order_update();
+            btn_order_update(dishes);  // Вызываем функцию из orderForm.js
         };
 
         kinds.Btns.forEach(word => {
@@ -67,6 +68,7 @@ export function displayDishes(dishes) {
             <p class="dish_weight">Вес: ${dish.count}</p>
             <button class="dish_button">Заказать</button>
         `;
+        btn_order_update(dishes);  // Вызываем функцию из orderForm.js
         return card;
     };
 
