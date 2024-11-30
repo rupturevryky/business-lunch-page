@@ -1,4 +1,6 @@
-async function loadDishes() {
+// loadDishes.js
+
+export async function loadDishes() {
     try {
         const response = await fetch('http://127.0.0.1:3000/dishes');
         if (!response.ok) {
@@ -20,14 +22,3 @@ async function loadDishes() {
         return [];
     }
 }
-
-// Экспорт переменной dishes для общего доступа
-let dishes = [];
-
-// Загрузка данных и сохранение их в dishes
-loadDishes().then(loadedData => {
-    dishes = loadedData;
-    console.log("dishes", dishes);
-
-});
-
