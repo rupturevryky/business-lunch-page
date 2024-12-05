@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const comboBlocks = document.querySelectorAll('.dish_combo .combo_block');
 
     const comdos = [
-        ['../img/icons/soup.png', '../img/icons/main.png', '../img/icons/salad.png', '../img/icons/drink.png'],
-        ['../img/icons/soup.png', '../img/icons/main.png', '../img/icons/drink.png'],
-        ['../img/icons/soup.png', '../img/icons/salad.png', '../img/icons/drink.png'],
-        ['../img/icons/main.png', '../img/icons/salad.png', '../img/icons/drink.png'],
-        ['../img/icons/main.png', '../img/icons/drink.png'],
-        ['../img/icons/desert.png']
+        ['./img/icons/soup.png', './img/icons/main.png', './img/icons/salad.png', './img/icons/drink.png'],
+        ['./img/icons/soup.png', './img/icons/main.png', './img/icons/drink.png'],
+        ['./img/icons/soup.png', './img/icons/salad.png', './img/icons/drink.png'],
+        ['./img/icons/main.png', './img/icons/salad.png', './img/icons/drink.png'],
+        ['./img/icons/main.png', './img/icons/drink.png'],
+        ['./img/icons/desert.png']
     ]
 
     function addNewIcons(block, images) {
