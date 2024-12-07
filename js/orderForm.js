@@ -46,13 +46,13 @@ export const updateOrderDisplay = () => {
             displayElement.style.display = 'block'; // Отображаем категорию
             totalCost += selectedDish.price;
             somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
-        } else {
-            // if (somethingSelected) {
+
+            console.log(selectedDish);
+            localStorage.setItem(category, selectedDish.keyword)
+
+        } else
             displayElement.style.display = 'block'; // Отображаем пустые категории только если что-то выбрано
-            // } else {
-            //     displayElement.style.display = 'none'; // Скрываем, если ничего не выбрано
-            // }
-        }
+
     });
 
     // Если ни одно блюдо не выбрано, отображаем сообщение "Ничего не выбрано"

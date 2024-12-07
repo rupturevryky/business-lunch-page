@@ -6,12 +6,26 @@
     gap: 10px;
 }
 
+@media (max-width: 860px) {
+    .dish_combo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dish_combo {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 .combo_block {
     box-sizing: border-box;
     text-align: center;
 
     display: flex;
     justify-content: center;
+    background-color: #F7F7F7;
+    border-radius: 15px;
 }
 
 .combo_block div {

@@ -7,6 +7,7 @@
 .dish_container {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     padding: 30px 40px;
     border-radius: 35px;
     cursor: pointer;
@@ -60,6 +61,12 @@
     }
 }
 
+@media (max-width: 700px) {
+    .dish_block {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 600px) {
     section>div {
         display: grid;
@@ -69,6 +76,10 @@
     section>h2 {
         text-align: center;
     }
+
+    .dish_block {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .order-form {
@@ -76,6 +87,15 @@
     justify-content: space-between;
     max-width: 800px;
     margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+    .order-form {
+        /* display: flex; */
+        /* justify-content: space-between; */
+        max-width: 800px;
+        margin: 0 auto;
+    }
 }
 
 .customer-order,
@@ -93,12 +113,9 @@
     margin-bottom: 5px;
 }
 
-#soup-order,
-#main-order,
-#drink-order {
-    margin-left: 10px;
+/* #soup-order {
     font-size: 16px;
-}
+} */
 
 #order-cost {
     font-size: 20px;
