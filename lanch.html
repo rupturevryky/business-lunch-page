@@ -10,12 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/lanch.css">
-    <link rel="stylesheet" href="./css/notification.css">
     <link rel="stylesheet" href="./css/combo.css">
 
     <script type="module" src="./js/main.js"></script>
-    <script type="module" src="./js/orderForm.js"></script>
-    <script type="module" src="./js/notification.js"></script>
+    <script type="module" src="./js/order_sum.js"></script>
     <script type="module" src="./js/combo_block.js"></script>
 
 </head>
@@ -47,15 +45,6 @@
             </div>
         </div>
 
-        <div class="notification" style="display: none;">
-            <div class="overlay displayNotification"></div>
-            <div class="popup">
-                <p>Ваше уведомление!</p>
-                <button class="displayNotification notificationBtn">Окей👌</button>
-            </div>
-        </div>
-
-
         <section>
             <h2 class="dish_header">Выберете суп</h2>
             <div class="dish_block"> </div>
@@ -81,80 +70,10 @@
             <div class="dish_block"> </div>
         </section>
 
-        <div class="to_center">
-            <h2 style="text-align: center;">Сделать заказ</h2>
-            <form action="https://httpbin.org/post" method="POST" class="order-form">
-                <div class="customer-order">
-                    <h3 style="padding-bottom: 10px;">Ваш заказ</h3>
 
-                    <p class="nothing-selected">Ничего не выбрано</p> <!-- По умолчанию показывается только это -->
-                    <div class="order-category" id="soup-order" style="display:none;">
-                        <strong>Суп:</strong><br><span>Блюдо не выбрано</span>
-                    </div>
-                    <div class="order-category" id="main_course-order" style="display:none;">
-                        <strong>Главное блюдо:</strong><br><span>Блюдо не выбрано</span>
-                    </div>
-                    <div class="order-category" id="beverages-order" style="display:none;">
-                        <strong>Напиток:</strong><br><span>Напиток не выбран</span>
-                    </div>
-                    <div class="order-category" id="salads_starters-order" style="display:none;">
-                        <strong>Напиток:</strong><br><span>Салат или стартер не выбран</span>
-                    </div>
-                    <div class="order-category" id="desserts-order" style="display:none;">
-                        <strong>Напиток:</strong><br><span>Десерт не выбран</span>
-                    </div>
-                    <p id="order-cost" style="display:none;"></p>
-
-                    <div class="customer-comment">
-                        <h3 style="padding-bottom: 10px;">Комментарий клиента:</h3>
-                        <textarea name="customer-comment" id="customer-comment"></textarea>
-                    </div>
-                </div>
-
-                <div class="customer-data">
-                    <h3>Данные клиента</h3>
-                    <label for="name">Имя:</label>
-                    <input type="text" id="name" name="name" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="subscribe" class="subscribe">
-                        <input type="checkbox" id="subscribe" name="subscribe" checked>
-                        <p>Я согласен получать информацию (подписка на рассылку)</p>
-                    </label>
-
-                    <label for="phone">Телефон:</label>
-                    <input type="tel" id="phone" name="phone" required>
-
-                    <label for="address">Адрес:</label>
-                    <input type="text" id="address" name="address" required>
-
-                    <label class="time_checkbox">Выберите время доставки:
-                        <div>
-                            <input type="radio" id="delivery-time-radio-1" class="subscribe_time"
-                                name="delivery-time-radio" required>
-                            <label for="delivery-time-radio-1">Как можно быстрее</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="delivery-time-radio-2" class="subscribe_time"
-                                name="delivery-time-radio" required>
-                            <label for="delivery-time-radio-2">К указанному времени</label>
-                        </div>
-                    </label>
-
-                    <label for="delivery-time">Указание времени доставки:</label>
-                    <input type="time" id="delivery-time" name="delivery-time" min="07:00" max="23:00" step="300"
-                        required>
-
-                    <section class="form_buttons">
-                        <button type="reset" class="form_button">Сбросить</button>
-                        <button type="submit" class="form_button" id="form_button">Отправить</button>
-                    </section>
-
-                </div>
-            </form>
-
+        <div class="order_prise">
+            <p></p>
+            <a href="./place_order.html" class="order_prise_btn">Перейти к оформлению</a>
         </div>
     </main>
 

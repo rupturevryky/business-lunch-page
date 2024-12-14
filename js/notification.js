@@ -1,40 +1,6 @@
 import { menu } from './main.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-
-    let popupText = document.querySelector('.popup p')
-
-    const inputPopupText = () => {
-        let state = 0;
-        if (!menu.desserts.selected && !menu.beverages.selected && !menu.main_course.selected && !menu.salads_starters.selected && !menu.soup.selected) {
-            popupText.textContent = "Ничего не выбрано. Выберите блюда для заказа"
-            state = 1
-        }
-
-        else if (!menu.beverages.selected) {
-            if (menu.main_course.selected || (menu.soup.selected && menu.salads_starters.selected)) {
-                popupText.textContent = "Выберите напиток"
-                state = 1
-            }
-        }
-
-        else if ((menu.desserts.selected || menu.beverages.selected) && !menu.main_course.selected) {
-            popupText.textContent = "Выберите главное блюдо"
-            state = 1
-        }
-
-        else if ((!menu.main_course.selected && !menu.salads_starters.selected) && menu.soup.selected) {
-            popupText.textContent = "Выберите главное блюдо/салат/стартер"
-            state = 1
-        }
-
-        else if (!menu.main_course.selected && !menu.soup.selected && menu.salads_starters.selected) {
-            popupText.textContent = "Выберите суп или главное блюдо"
-            state = 1
-        }
-        if (state == 0) popupText.textContent = "Непредвиденная комбинация"
-        return state;
-    }
+export const notification_func = () => {
     inputPopupText()
 
     const notification = document.querySelector('.notification');
@@ -53,17 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     form_button.addEventListener('submit', async (event) => {
         event.preventDefault(); // Останавливаем стандартное поведение формы
 
-        // Проверка на ошибку с помощью inputPopupText
         if (inputPopupText() == 1) {
             notification.style.display = 'block';
         } else {
             const formData = new FormData(event.target); // Получаем данные формы
-            const menu_keys = Object.keys(menu);
 
             // Добавляем выбранные блюда в данные формы
-            for (let dish of menu_keys)
-                if (menu[dish].now_dish)
-                    formData.append('food', menu[dish].now_dish);
+            for (let dish of Object.keys(menu))
+                if (localStorage.getItem(dish))
+                    formData.append(dish, localStorage.getItem(dish).split(',')[0]);
+
 
             try {
                 // Отправляем данные на сервер с использованием fetch
@@ -87,4 +52,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-})
+}
+
+export const inputPopupText = () => {
+
+    let popupText = document.querySelector('.popup p')
+    let state = 0;
+
+    if (!localStorage.getItem("desserts") && !localStorage.getItem("beverages") && !localStorage.getItem("main_course") && !localStorage.getItem("salads_starters") && !localStorage.getItem("soup")) {
+        if (popupText) popupText.textContent = "Ничего не выбрано. Выберите блюда для заказа"
+        state = 1
+    }
+
+    else if (!localStorage.getItem("beverages") && (localStorage.getItem("main_course") || (localStorage.getItem("soup") && localStorage.getItem("salads_starters")))) {
+        if (popupText) popupText.textContent = "Выберите напиток"
+        state = 1
+
+    }
+
+    else if ((localStorage.getItem("desserts") || localStorage.getItem("beverages")) && !localStorage.getItem("main_course")) {
+        if (popupText) popupText.textContent = !localStorage.getItem("beverages") ? "Выберите главное блюдо и напиток" : "Выберите главное блюдо"
+        state = 1
+    }
+
+    else if ((!localStorage.getItem("main_course") && !localStorage.getItem("salads_starters")) && localStorage.getItem("soup")) {
+        if (popupText) popupText.textContent = "Выберите главное блюдо/салат/стартер"
+        state = 1
+    }
+
+    else if (!localStorage.getItem("main_course") && !localStorage.getItem("soup") && localStorage.getItem("salads_starters")) {
+        if (popupText) popupText.textContent = "Выберите суп или главное блюдо"
+        state = 1
+    }
+    if (state == 0) if (popupText) popupText.textContent = "Непредвиденная комбинация"
+
+    return state;
+}

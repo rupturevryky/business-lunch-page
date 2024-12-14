@@ -1,0 +1,91 @@
+export const set_form_food = (dishes) => {
+
+    const orderCostDisplay = document.querySelector('#order-cost');
+    const customerComment = document.querySelector('.customer-comment');
+    let somethingSelected = false;
+
+    let sum = 0;
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); // Получаем ключ по индексу
+        let value = localStorage.getItem(key); // Получаем значение по ключу
+        value = value.split(",")
+        if (value[1]) sum += Number(value[1])
+
+        const displayElement = document.querySelector(`#${key}-order`);
+
+        // Если блюдо выбрано, показываем его, иначе показываем текст "Блюдо не выбрано"
+        if (value[0]) {
+            let name = dishes.find(item => item.keyword == value[0]);
+            name = name.name;
+
+            document.querySelector('.nothing-selected').style.display = "none";
+            let dish;
+            if (key == "soup") dish = "Суп"
+            if (key == "main_course") dish = "Главное блюдо"
+            if (key == "beverages") dish = "Напиток"
+            if (key == "salads_starters") dish = "Салат или стартер"
+            if (key == "desserts") dish = "Десерт"
+            displayElement.innerHTML = `<strong>${dish}:<br></strong> ${name} ${value[1]}₽`;
+            displayElement.style.display = 'block'; // Отображаем категорию
+            somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
+        } else
+            displayElement.style.display = 'block'; // Отображаем пустые категории только если что-то выбрано
+    }
+
+    // Если ни одно блюдо не выбрано, отображаем сообщение "Ничего не выбрано"
+    if (!somethingSelected) {
+        document.querySelectorAll('.order-key').forEach(key => {
+            key.style.display = 'none'; // Скрываем все категории
+        });
+        if (!document.querySelector('.nothing-selected')) {
+            customerComment.insertAdjacentHTML('beforebegin', `<p class="nothing-selected"><br>Ничего не выбрано</p>`);
+        }
+    }
+
+    // Обновляем итоговую стоимость заказа
+    if (sum > 0) {
+        orderCostDisplay.textContent = `Стоимость заказа: ${sum}₽`;
+        orderCostDisplay.style.display = 'block'; // Показать стоимость, если есть сумма
+    } else {
+        orderCostDisplay.style.display = 'none'; // Скрыть стоимость, если сумма 0
+    }
+}
+
+export const set_order_cards = (dishes) => {
+    const Container = document.querySelector('.dish_block');
+
+    const createDishCard = (dish, key) => {
+        // Создаём контейнер карточки
+        const card = document.createElement('div');
+        card.className = 'dish_container';
+        card.dataset.dish = dish.keyword;
+
+        // Вставляем HTML содержимое
+        card.innerHTML = `
+            <img src="${dish.image}" alt="${dish.name}" class="dish_image">
+            <p class="dish_price">Цена: ${dish.price} руб.</p>
+            <p class="dish_title">${dish.name}</p>
+            <p class="dish_weight">Вес: ${dish.count}</p>
+            <button class="dish_button" data-action="delete">Удалить</button>
+        `;
+
+        // Добавляем обработчик на кнопку "Удалить"
+        const deleteButton = card.querySelector('[data-action="delete"]');
+        deleteButton.addEventListener('click', () => {
+            card.remove(); // Удаляем карточку
+            localStorage.removeItem(key)
+        });
+        Container.appendChild(card)
+    };
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); // Получаем ключ по индексу
+        let value = localStorage.getItem(key); // Получаем значение по ключу
+        value = value.split(",")
+        if (value) {
+            createDishCard(dishes.find(item => item.keyword == value[0]), key)
+        }
+    }
+};
+
+

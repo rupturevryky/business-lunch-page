@@ -2,7 +2,10 @@
 
 import { loadDishes } from './loadDishes.js';
 import { displayDishes } from './displayDishes.js';
-import { btn_order_update } from './orderForm.js';
+import { btn_order_update, updateOrderDisplay } from './order_sum.js';
+import { set_form_food, set_order_cards } from './order.js';
+import { notification_func } from './notification.js';
+
 
 export let menu = {
     soup: {
@@ -43,12 +46,20 @@ export let selectedDishes = { soup: null, main_course: null, beverages: null, sa
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Загружаем блюда
-        dishes = await loadDishes(); // Загружаем блюда и сохраняем их в dishes
+        dishes = await loadDishes(); // Загружаем блюда и сохраняем их в dishes        
 
         if (dishes.length > 0) {
             // Если данные загружены, отображаем блюда
-            displayDishes(dishes);
-            btn_order_update(dishes); // Передаем dishes в функцию btn_order_update
+            if (window.location.pathname.indexOf('lanch') > -1) {
+                btn_order_update(dishes); // Передаем dishes в функцию btn_order_update
+                updateOrderDisplay()
+                displayDishes(dishes);
+            }
+            if (window.location.pathname.indexOf('place_order') > -1) {
+                notification_func()
+                set_order_cards(dishes)
+                set_form_food(dishes)
+            }
         } else {
             console.error('Не удалось загрузить блюда');
         }

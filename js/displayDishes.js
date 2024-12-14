@@ -1,7 +1,7 @@
 // displayDishes.js
 
 import { menu } from './main.js'; // Импортируем menu
-import { btn_order_update } from './orderForm.js';  // Импортируем функцию btn_order_update
+import { btn_order_update } from './order_sum.js';  // Импортируем функцию btn_order_update
 
 export function displayDishes(dishes) {
     const sortedDishes = dishes.sort((a, b) => a.name.localeCompare(b.name));
