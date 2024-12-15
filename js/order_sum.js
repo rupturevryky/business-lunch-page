@@ -59,7 +59,6 @@ const order_sum_btn = (can) => {
         } else {
             // Если can === true, удаляем блокировку
             link.classList = "order_prise_btn"
-            console.log(link.classList);
             link.removeEventListener('click', preventDefaultAction);
         }
     }

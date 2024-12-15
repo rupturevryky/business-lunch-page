@@ -1,4 +1,22 @@
-export const set_form_food = (dishes) => {
+export const place_order = (dishes) => {
+
+    const textarea = document.getElementById('customer-comment');
+    textarea.addEventListener('input', function () {
+        // Сбрасываем высоту, чтобы корректно пересчитать
+        this.style.height = 'auto';
+        // Устанавливаем высоту в зависимости от содержимого
+        if (this.scrollHeight < 400)
+            this.style.height = this.scrollHeight + 'px';
+        else
+            this.style.height = 400 + 'px';
+    });
+
+
+    set_order_cards(dishes)
+    set_form_food(dishes)
+}
+
+const set_form_food = (dishes) => {
 
     const orderCostDisplay = document.querySelector('#order-cost');
     const customerComment = document.querySelector('.customer-comment');
@@ -9,38 +27,40 @@ export const set_form_food = (dishes) => {
         const key = localStorage.key(i); // Получаем ключ по индексу
         let value = localStorage.getItem(key); // Получаем значение по ключу
         value = value.split(",")
+
         if (value[1]) sum += Number(value[1])
 
         const displayElement = document.querySelector(`#${key}-order`);
 
         // Если блюдо выбрано, показываем его, иначе показываем текст "Блюдо не выбрано"
         if (value[0]) {
-            let name = dishes.find(item => item.keyword == value[0]);
-            name = name.name;
+            let name = undefined;
+            if (value[0] != "NULL") {
+                name = dishes.find(item => item.keyword == value[0]);
+                name = name.name;
+                document.querySelector('.nothing-selected').style.display = "none";
+            }
 
-            document.querySelector('.nothing-selected').style.display = "none";
             let dish;
             if (key == "soup") dish = "Суп"
             if (key == "main_course") dish = "Главное блюдо"
             if (key == "beverages") dish = "Напиток"
             if (key == "salads_starters") dish = "Салат или стартер"
             if (key == "desserts") dish = "Десерт"
-            displayElement.innerHTML = `<strong>${dish}:<br></strong> ${name} ${value[1]}₽`;
-            displayElement.style.display = 'block'; // Отображаем категорию
-            somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
-        } else
-            displayElement.style.display = 'block'; // Отображаем пустые категории только если что-то выбрано
+            if (name) {
+                displayElement.innerHTML = `<strong>${dish}:<br></strong> ${name} ${value[1]}₽`
+                displayElement.style.display = 'block'; // Отображаем категорию
+                somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
+            } else {
+                displayElement.style.display = 'none'
+                displayElement.innerHTML = `<strong>${dish}:<br></strong> Ничего не выбрано`
+            }
+
+        }
     }
 
     // Если ни одно блюдо не выбрано, отображаем сообщение "Ничего не выбрано"
-    if (!somethingSelected) {
-        document.querySelectorAll('.order-key').forEach(key => {
-            key.style.display = 'none'; // Скрываем все категории
-        });
-        if (!document.querySelector('.nothing-selected')) {
-            customerComment.insertAdjacentHTML('beforebegin', `<p class="nothing-selected"><br>Ничего не выбрано</p>`);
-        }
-    }
+    if (!somethingSelected) removeFoodFromForm()
 
     // Обновляем итоговую стоимость заказа
     if (sum > 0) {
@@ -51,7 +71,29 @@ export const set_form_food = (dishes) => {
     }
 }
 
-export const set_order_cards = (dishes) => {
+export const removeAllFoodOrder = () => {
+    document.querySelector('.dish_block').innerHTML = ``
+
+    document.querySelectorAll('.order-category').forEach(key => {
+        key.style.display = 'none'; // Скрываем все категории
+    });
+    document.querySelector('#order-cost').style.display = 'none'; // Скрываем стоимость
+
+    if (!document.querySelector('.nothing-selected')) {
+        customerComment.insertAdjacentHTML('beforebegin', `<p class="nothing-selected"><br>Ничего не выбрано</p>`);
+    } else document.querySelector('.nothing-selected').style.display = "block"
+
+    const resetLocalStorage = () => {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i); // Получаем ключ по индексу
+            localStorage.removeItem(key); // Получаем значение по ключу
+        }
+        localStorage.length > 0 ? resetLocalStorage() : null
+    }
+    resetLocalStorage()
+}
+
+const set_order_cards = (dishes) => {
     const Container = document.querySelector('.dish_block');
 
     const createDishCard = (dish, key) => {
@@ -73,8 +115,11 @@ export const set_order_cards = (dishes) => {
         const deleteButton = card.querySelector('[data-action="delete"]');
         deleteButton.addEventListener('click', () => {
             card.remove(); // Удаляем карточку
-            localStorage.removeItem(key)
+            // localStorage.removeItem(key)
+            localStorage.setItem(key, 'NULL')
+            set_form_food(dishes)
         });
+
         Container.appendChild(card)
     };
 
@@ -82,7 +127,7 @@ export const set_order_cards = (dishes) => {
         const key = localStorage.key(i); // Получаем ключ по индексу
         let value = localStorage.getItem(key); // Получаем значение по ключу
         value = value.split(",")
-        if (value) {
+        if (value && value != "NULL") {
             createDishCard(dishes.find(item => item.keyword == value[0]), key)
         }
     }

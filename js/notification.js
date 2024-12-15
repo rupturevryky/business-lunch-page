@@ -1,4 +1,5 @@
 import { menu } from './main.js';
+import { removeAllFoodOrder } from './order.js';
 
 export const notification_func = () => {
     inputPopupText()
@@ -26,7 +27,7 @@ export const notification_func = () => {
 
             // Добавляем выбранные блюда в данные формы
             for (let dish of Object.keys(menu))
-                if (localStorage.getItem(dish))
+                if (localStorage.getItem(dish) && localStorage.getItem(dish) != 'NULL')
                     formData.append(dish, localStorage.getItem(dish).split(',')[0]);
 
 
@@ -45,8 +46,11 @@ export const notification_func = () => {
 
                 // Сбрасываем форму после успешной отправки
                 event.target.reset();
+                // Сбрасываем localStorage после успешной отправки и удаляет блоки в форме и в заказе
+                removeAllFoodOrder()
 
             } catch (error) {
+                alert('Ошибка при отправке данных:', error);
                 console.error('Ошибка при отправке данных:', error);
             }
         }
@@ -57,30 +61,36 @@ export const notification_func = () => {
 export const inputPopupText = () => {
 
     let popupText = document.querySelector('.popup p')
-    let state = 0;
+    let state = 0,
+        desserts = (!localStorage.getItem("desserts") || localStorage.getItem("desserts") == "NULL") ? false : true,
+        beverages = (!localStorage.getItem("beverages") || localStorage.getItem("beverages") == "NULL") ? false : true,
+        main_course = (!localStorage.getItem("main_course") || localStorage.getItem("main_course") == "NULL") ? false : true,
+        salads_starters = (!localStorage.getItem("salads_starters") || localStorage.getItem("salads_starters") == "NULL") ? false : true,
+        soup = (!localStorage.getItem("soup") || localStorage.getItem("soup") == "NULL") ? false : true;
 
-    if (!localStorage.getItem("desserts") && !localStorage.getItem("beverages") && !localStorage.getItem("main_course") && !localStorage.getItem("salads_starters") && !localStorage.getItem("soup")) {
+
+    if (!desserts && !beverages && !main_course && !salads_starters && !soup) {
         if (popupText) popupText.textContent = "Ничего не выбрано. Выберите блюда для заказа"
         state = 1
     }
 
-    else if (!localStorage.getItem("beverages") && (localStorage.getItem("main_course") || (localStorage.getItem("soup") && localStorage.getItem("salads_starters")))) {
+    else if (!beverages && (main_course || (soup && salads_starters))) {
         if (popupText) popupText.textContent = "Выберите напиток"
         state = 1
 
     }
 
-    else if ((localStorage.getItem("desserts") || localStorage.getItem("beverages")) && !localStorage.getItem("main_course")) {
-        if (popupText) popupText.textContent = !localStorage.getItem("beverages") ? "Выберите главное блюдо и напиток" : "Выберите главное блюдо"
+    else if ((desserts || beverages) && !main_course) {
+        if (popupText) popupText.textContent = !beverages ? "Выберите главное блюдо и напиток" : "Выберите главное блюдо"
         state = 1
     }
 
-    else if ((!localStorage.getItem("main_course") && !localStorage.getItem("salads_starters")) && localStorage.getItem("soup")) {
+    else if ((!main_course && !salads_starters) && soup) {
         if (popupText) popupText.textContent = "Выберите главное блюдо/салат/стартер"
         state = 1
     }
 
-    else if (!localStorage.getItem("main_course") && !localStorage.getItem("soup") && localStorage.getItem("salads_starters")) {
+    else if (!main_course && !soup && salads_starters) {
         if (popupText) popupText.textContent = "Выберите суп или главное блюдо"
         state = 1
     }
@@ -88,3 +98,4 @@ export const inputPopupText = () => {
 
     return state;
 }
+
