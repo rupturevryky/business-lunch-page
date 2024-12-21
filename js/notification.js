@@ -24,11 +24,13 @@ export const notification_func = () => {
             notification.style.display = 'block';
         } else {
             const formData = new FormData(event.target); // Получаем данные формы
-
+            let sum = 0;
             // Добавляем выбранные блюда в данные формы
             for (let dish of Object.keys(menu))
-                if (localStorage.getItem(dish) && localStorage.getItem(dish) != 'NULL')
+                if (localStorage.getItem(dish) && localStorage.getItem(dish) != 'NULL') {
+                    sum += localStorage.getItem(dish).split(',')[1]
                     formData.append(dish, localStorage.getItem(dish).split(',')[0]);
+                }
 
 
             try {
@@ -47,6 +49,7 @@ export const notification_func = () => {
                 // Сбрасываем форму после успешной отправки
                 event.target.reset();
                 // Сбрасываем localStorage после успешной отправки и удаляет блоки в форме и в заказе
+                // set_pushed_order(sum, formData.get())
                 removeAllFoodOrder()
 
             } catch (error) {
@@ -99,3 +102,17 @@ export const inputPopupText = () => {
     return state;
 }
 
+const set_pushed_order = (sum, time) => {
+    let res = {
+        time: new Date(),
+        ordering_structure: "",
+        sum: sum,
+        time: time
+    };
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); // Получаем ключ по индексу
+        let value = localStorage.getItem(key); // Получаем значение по ключу
+        value = value.split(",")
+    }
+    localStorage.setItem("pushed_order", res)
+}

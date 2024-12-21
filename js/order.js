@@ -2,9 +2,7 @@ export const place_order = (dishes) => {
 
     const textarea = document.getElementById('customer-comment');
     textarea.addEventListener('input', function () {
-        // Сбрасываем высоту, чтобы корректно пересчитать
         this.style.height = 'auto';
-        // Устанавливаем высоту в зависимости от содержимого
         if (this.scrollHeight < 400)
             this.style.height = this.scrollHeight + 'px';
         else
@@ -19,7 +17,6 @@ export const place_order = (dishes) => {
 const set_form_food = (dishes) => {
 
     const orderCostDisplay = document.querySelector('#order-cost');
-    const customerComment = document.querySelector('.customer-comment');
     let somethingSelected = false;
 
     let sum = 0;
@@ -72,6 +69,8 @@ const set_form_food = (dishes) => {
 }
 
 export const removeAllFoodOrder = () => {
+    const customerComment = document.querySelector('.customer-comment');
+
     document.querySelector('.dish_block').innerHTML = ``
 
     document.querySelectorAll('.order-category').forEach(key => {
@@ -84,11 +83,15 @@ export const removeAllFoodOrder = () => {
     } else document.querySelector('.nothing-selected').style.display = "block"
 
     const resetLocalStorage = () => {
-        for (let i = 0; i < localStorage.length; i++) {
+        const max_steps = localStorage.length;
+        for (let i = 0; i < max_steps; i++) {
             const key = localStorage.key(i); // Получаем ключ по индексу
-            localStorage.removeItem(key); // Получаем значение по ключу
+            if (key != "pushed_order") {
+                i--;
+                localStorage.removeItem(key); // Получаем значение по ключу
+            }
         }
-        localStorage.length > 0 ? resetLocalStorage() : null
+        // localStorage.length > 0 ? resetLocalStorage() : null
     }
     resetLocalStorage()
 }

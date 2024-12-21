@@ -1,0 +1,47 @@
+main {
+    margin-bottom: 0;
+}
+
+.order_table {
+    margin-bottom: 250px;
+}
+
+.order_table_row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    border-top: 1px solid rgb(180, 180, 180);
+    min-height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.leng_300 {
+    padding: 10px 0px;
+    width: 300px;
+}
+
+.leng_100 {
+    padding: 10px 0px;
+    width: 100px;
+}
+
+.leng_150 {
+    padding: 10px 0px;
+    width: 150px;
+}
+
+.leng_200 {
+    padding: 10px 0px;
+    width: 200px;
+}
+
+.leng_250 {
+    padding: 10px 0px;
+    width: 250px;
+}
+
+.leng_400 {
+    padding: 10px 0px;
+    width: 400px;
+}
