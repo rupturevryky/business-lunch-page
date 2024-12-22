@@ -31,8 +31,6 @@ const orders_page = () => {
                 </p>
             `;
         order_table.append(now_order)
-        // console.log(order_table, now_order);
-
     }
 }
 orders_page()

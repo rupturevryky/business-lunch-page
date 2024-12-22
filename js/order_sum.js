@@ -33,6 +33,7 @@ export const updateOrderDisplay = () => {
     let sum = 0;
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i); // Получаем ключ по индексу
+        if (key.indexOf("pushed_order") != -1) continue
         let value = localStorage.getItem(key); // Получаем значение по ключу
         value = value.split(",")
         if (value[1]) sum += Number(value[1])

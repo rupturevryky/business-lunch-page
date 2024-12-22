@@ -17,7 +17,6 @@ export const place_order = (dishes) => {
 }
 
 const set_form_food = (dishes) => {
-    // console.log("set_form_food");
 
     const orderCostDisplay = document.querySelector('#order-cost');
     let somethingSelected = false;
@@ -25,6 +24,7 @@ const set_form_food = (dishes) => {
     let sum = 0;
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i); // Получаем ключ по индексу
+        if (key.indexOf('pushed_order') != -1) continue
         let value = localStorage.getItem(key); // Получаем значение по ключу
         value = value.split(",")
 
@@ -37,7 +37,8 @@ const set_form_food = (dishes) => {
             // && value[0] != "[object Object]"
         ) {
             let name = undefined;
-            if (value[0] != "NULL") {
+            if (value[0] != "NULL" && value[0].indexOf("[object") == -1) {
+
                 name = dishes.find(item => item.keyword == value[0]);
                 name = name.name;
 
@@ -54,11 +55,10 @@ const set_form_food = (dishes) => {
                 displayElement.innerHTML = `<strong>${dish}:<br></strong> ${name} ${value[1]}₽`
                 displayElement.style.display = 'block'; // Отображаем категорию
                 somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
-            } else {
-                // if (displayElement) {
+            }
+            else if (dish && displayElement) {
                 displayElement.innerHTML = `<strong>${dish}:<br></strong> Ничего не выбрано`
                 displayElement.style.display = 'none'
-                // }
             }
 
         }
@@ -91,12 +91,10 @@ export const removeAllFoodOrder = () => {
     } else document.querySelector('.nothing-selected').style.display = "block"
 
     const resetLocalStorage = () => {
-        console.log("resetLocalStorage");
-
         // const max_steps = localStorage.length;
         for (let i = 0; i < localStorage.length;) {
             const key = localStorage.key(i); // Получаем ключ по индексу
-            if (key != "pushed_order")
+            if (key.indexOf("pushed_order") == -1)
                 localStorage.removeItem(key); // Получаем значение по ключу
             else i++;
         }
@@ -140,7 +138,7 @@ const set_order_cards = (dishes) => {
         const key = localStorage.key(i); // Получаем ключ по индексу
         let value = localStorage.getItem(key); // Получаем значение по ключу
         value = value.split(",")
-        if (value && value != "NULL"
+        if (value && value != "NULL,0"
             // && value[0] != "[object Object]"
 
         ) {

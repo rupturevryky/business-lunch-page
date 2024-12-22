@@ -49,7 +49,8 @@ export const notification_func = () => {
                 // Сбрасываем форму после успешной отправки
                 event.target.reset();
                 // Сбрасываем localStorage после успешной отправки и удаляет блоки в форме и в заказе
-                // set_pushed_order(sum, formData.get())
+
+                set_pushed_order(sum, result.form)
                 removeAllFoodOrder()
 
             } catch (error) {
@@ -101,17 +102,24 @@ export const inputPopupText = () => {
     return state;
 }
 
-const set_pushed_order = (sum, time) => {
-    let res = {
-        time: new Date(),
-        ordering_structure: "",
-        sum: sum,
-        time: time
-    };
+const set_pushed_order = (sum, formData) => {
+    // let res = {
+    //     time: new Date(),
+    //     ordering_structure: "",
+    //     sum: sum,
+    //     time: time
+    // };
+    let id = 1;
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i); // Получаем ключ по индексу
+        if (key.indexOf("pushed_order") == -1) continue
         let value = localStorage.getItem(key); // Получаем значение по ключу
-        value = value.split(",")
+        if (value.indexOf("[object") != -1) {
+            localStorage.removeItem(key)
+            continue
+        }
+        id++
     }
-    localStorage.setItem("pushed_order", res)
+    localStorage.setItem(`${id}_pushed_order`, JSON.stringify(formData))
+
 }
