@@ -27,7 +27,7 @@ export const notification_func = () => {
             let sum = 0;
             // Добавляем выбранные блюда в данные формы
             for (let dish of Object.keys(menu))
-                if (localStorage.getItem(dish) && localStorage.getItem(dish) != 'NULL') {
+                if (localStorage.getItem(dish) && localStorage.getItem(dish) != 'NULL,0') {
                     sum += localStorage.getItem(dish).split(',')[1]
                     formData.append(dish, localStorage.getItem(dish).split(',')[0]);
                 }
@@ -65,12 +65,11 @@ export const inputPopupText = () => {
 
     let popupText = document.querySelector('.popup p')
     let state = 0,
-        desserts = (!localStorage.getItem("desserts") || localStorage.getItem("desserts") == "NULL") ? false : true,
-        beverages = (!localStorage.getItem("beverages") || localStorage.getItem("beverages") == "NULL") ? false : true,
-        main_course = (!localStorage.getItem("main_course") || localStorage.getItem("main_course") == "NULL") ? false : true,
-        salads_starters = (!localStorage.getItem("salads_starters") || localStorage.getItem("salads_starters") == "NULL") ? false : true,
-        soup = (!localStorage.getItem("soup") || localStorage.getItem("soup") == "NULL") ? false : true;
-
+        desserts = (!localStorage.getItem("desserts") || localStorage.getItem("desserts") == "NULL,0") ? false : true,
+        beverages = (!localStorage.getItem("beverages") || localStorage.getItem("beverages") == "NULL,0") ? false : true,
+        main_course = (!localStorage.getItem("main_course") || localStorage.getItem("main_course") == "NULL,0") ? false : true,
+        salads_starters = (!localStorage.getItem("salads_starters") || localStorage.getItem("salads_starters") == "NULL,0") ? false : true,
+        soup = (!localStorage.getItem("soup") || localStorage.getItem("soup") == "NULL,0") ? false : true;
 
     if (!desserts && !beverages && !main_course && !salads_starters && !soup) {
         if (popupText) popupText.textContent = "Ничего не выбрано. Выберите блюда для заказа"

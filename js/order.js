@@ -1,3 +1,5 @@
+// import {removeFoodFromForm} from "" 
+
 export const place_order = (dishes) => {
 
     const textarea = document.getElementById('customer-comment');
@@ -15,6 +17,7 @@ export const place_order = (dishes) => {
 }
 
 const set_form_food = (dishes) => {
+    // console.log("set_form_food");
 
     const orderCostDisplay = document.querySelector('#order-cost');
     let somethingSelected = false;
@@ -30,11 +33,14 @@ const set_form_food = (dishes) => {
         const displayElement = document.querySelector(`#${key}-order`);
 
         // Если блюдо выбрано, показываем его, иначе показываем текст "Блюдо не выбрано"
-        if (value[0]) {
+        if (value[0]
+            // && value[0] != "[object Object]"
+        ) {
             let name = undefined;
             if (value[0] != "NULL") {
                 name = dishes.find(item => item.keyword == value[0]);
                 name = name.name;
+
                 document.querySelector('.nothing-selected').style.display = "none";
             }
 
@@ -49,15 +55,17 @@ const set_form_food = (dishes) => {
                 displayElement.style.display = 'block'; // Отображаем категорию
                 somethingSelected = true; // Помечаем, что хотя бы одно блюдо выбрано
             } else {
-                displayElement.style.display = 'none'
+                // if (displayElement) {
                 displayElement.innerHTML = `<strong>${dish}:<br></strong> Ничего не выбрано`
+                displayElement.style.display = 'none'
+                // }
             }
 
         }
     }
 
     // Если ни одно блюдо не выбрано, отображаем сообщение "Ничего не выбрано"
-    if (!somethingSelected) removeFoodFromForm()
+    if (!somethingSelected) removeAllFoodOrder()
 
     // Обновляем итоговую стоимость заказа
     if (sum > 0) {
@@ -83,13 +91,14 @@ export const removeAllFoodOrder = () => {
     } else document.querySelector('.nothing-selected').style.display = "block"
 
     const resetLocalStorage = () => {
-        const max_steps = localStorage.length;
-        for (let i = 0; i < max_steps; i++) {
+        console.log("resetLocalStorage");
+
+        // const max_steps = localStorage.length;
+        for (let i = 0; i < localStorage.length;) {
             const key = localStorage.key(i); // Получаем ключ по индексу
-            if (key != "pushed_order") {
-                i--;
+            if (key != "pushed_order")
                 localStorage.removeItem(key); // Получаем значение по ключу
-            }
+            else i++;
         }
         // localStorage.length > 0 ? resetLocalStorage() : null
     }
@@ -100,13 +109,14 @@ const set_order_cards = (dishes) => {
     const Container = document.querySelector('.dish_block');
 
     const createDishCard = (dish, key) => {
-        // Создаём контейнер карточки
-        const card = document.createElement('div');
-        card.className = 'dish_container';
-        card.dataset.dish = dish.keyword;
+        if (dish) {
+            // Создаём контейнер карточки
+            const card = document.createElement('div');
+            card.className = 'dish_container';
+            card.dataset.dish = dish.keyword;
 
-        // Вставляем HTML содержимое
-        card.innerHTML = `
+            // Вставляем HTML содержимое
+            card.innerHTML = `
             <img src="${dish.image}" alt="${dish.name}" class="dish_image">
             <p class="dish_price">Цена: ${dish.price} руб.</p>
             <p class="dish_title">${dish.name}</p>
@@ -114,23 +124,26 @@ const set_order_cards = (dishes) => {
             <button class="dish_button" data-action="delete">Удалить</button>
         `;
 
-        // Добавляем обработчик на кнопку "Удалить"
-        const deleteButton = card.querySelector('[data-action="delete"]');
-        deleteButton.addEventListener('click', () => {
-            card.remove(); // Удаляем карточку
-            // localStorage.removeItem(key)
-            localStorage.setItem(key, 'NULL')
-            set_form_food(dishes)
-        });
-
-        Container.appendChild(card)
+            // Добавляем обработчик на кнопку "Удалить"
+            const deleteButton = card.querySelector('[data-action="delete"]');
+            deleteButton.addEventListener('click', () => {
+                card.remove(); // Удаляем карточку
+                // localStorage.removeItem(key)
+                localStorage.setItem(key, 'NULL,0')
+                set_form_food(dishes)
+            });
+            Container.appendChild(card)
+        }
     };
 
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i); // Получаем ключ по индексу
         let value = localStorage.getItem(key); // Получаем значение по ключу
         value = value.split(",")
-        if (value && value != "NULL") {
+        if (value && value != "NULL"
+            // && value[0] != "[object Object]"
+
+        ) {
             createDishCard(dishes.find(item => item.keyword == value[0]), key)
         }
     }
