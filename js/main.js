@@ -3,6 +3,7 @@
 import { loadDishes } from './loadDishes.js';
 import { displayDishes } from './displayDishes.js';
 import { btn_order_update, updateOrderDisplay } from './order_sum.js';
+import { orders_page } from './orders_page.js';
 import { place_order } from './order.js';
 import { notification_func } from './notification.js';
 
@@ -58,6 +59,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (window.location.pathname.indexOf('place_order') > -1) {
                 notification_func()
                 place_order(dishes)
+            }
+            if (window.location.pathname.indexOf('orders_page') > -1) {
+                orders_page(dishes)
             }
         } else {
             console.error('Не удалось загрузить блюда');
