@@ -1,4 +1,4 @@
-import { menu } from './main.js';
+import { menu } from '../main.js';
 import { removeAllFoodOrder } from './order.js';
 
 export const notification_func = () => {

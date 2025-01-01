@@ -37,19 +37,22 @@
                     <button onclick="closeModal('viewOrderModal')">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Дата оформления:</strong> 23.11.2024 20:01</p>
+                    <p class="order_date"><strong>Дата оформления:</strong> 23.11.2024 20:01</p>
                     <h3>Доставка</h3>
-                    <p><strong>Имя получателя:</strong> Иванов Иван Иванович</p>
-                    <p><strong>Адрес доставки:</strong> г. Москва, ул. Большая Семёновская, 38</p>
-                    <p><strong>Время доставки:</strong> 21:00</p>
-                    <p><strong>Телефон:</strong> +74952230523</p>
-                    <p><strong>Email:</strong> example@mospolytech.ru</p>
-                    <p><strong>Комментарий:</strong> Позвонить от поста охраны.</p>
+                    <p class="client_name"><strong>Имя получателя:</strong> Иванов Иван Иванович</p>
+                    <p class="order_place"><strong>Адрес доставки:</strong> г. Москва, ул. Большая Семёновская, 38</p>
+                    <p class="order_time"><strong>Время доставки:</strong> 21:00</p>
+                    <p class="client_tel"><strong>Телефон:</strong> +74952230523</p>
+                    <p class="client_mail"><strong>Email:</strong> example@mospolytech.ru</p>
+                    <p class="client_comment"><strong>Комментарий:</strong> Позвонить от поста охраны.</p>
                     <h3>Состав заказа</h3>
-                    <p><strong>Основное блюдо:</strong> Жареная картошка с грибами (150₽)</p>
-                    <p><strong>Напиток:</strong> Зелёный чай (100₽)</p>
-                    <p><strong>Десерт:</strong> Чизкейк (240₽)</p>
-                    <p><strong>Стоимость:</strong> 490₽</p>
+                    <div class="order_content">
+                        <!-- <p ><strong>Основное блюдо:</strong> Жареная картошка с грибами (150₽)</p>
+                        <p><strong>Напиток:</strong> Зелёный чай (100₽)</p>
+                        <p><strong>Десерт:</strong> Чизкейк (240₽)</p>
+                        <p><strong>Стоимость:</strong> 490₽</p> -->
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button onclick="closeModal('viewOrderModal')">OK</button>

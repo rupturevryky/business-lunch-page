@@ -1,5 +1,3 @@
-// import {removeFoodFromForm} from "" 
-
 export const place_order = (dishes) => {
 
     const textarea = document.getElementById('customer-comment');

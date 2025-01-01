@@ -1,3 +1,6 @@
+import { viewOrderModal } from './modalWindows.js';
+
+
 const date_to_human_readable = (isoString) => {
     const date = new Date(isoString);
 
@@ -68,11 +71,10 @@ export const orders_page = (dishes) => {
     icons ? icons.forEach(icon => icon.style.cursor = 'pointer') : null
 
     let trashes = document.querySelectorAll('.bi-trash')
-    trashes ? console.log(trashes) : null
-
     trashes ? trashes.forEach(trash => trash.addEventListener('click', trash_handler)) : null
 
-
+    let views = document.querySelectorAll('.bi-eye')
+    views ? views.forEach(view => view.addEventListener('click', (event) => viewOrderModal(dishes, event.currentTarget.id))) : null
 
 }
 orders_page()

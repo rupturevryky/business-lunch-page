@@ -1,11 +1,13 @@
 // main.js
 
 import { loadDishes } from './loadDishes.js';
-import { displayDishes } from './displayDishes.js';
-import { btn_order_update, updateOrderDisplay } from './order_sum.js';
-import { orders_page } from './orders_page.js';
-import { place_order } from './order.js';
-import { notification_func } from './notification.js';
+import { displayDishes } from './lanch/displayDishes.js';
+import { btn_order_update, updateOrderDisplay } from './lanch/order_sum.js';
+
+import { orders_page } from './orders_page/orders_page.js';
+
+import { place_order } from './place_order/order.js';
+import { notification_func } from './place_order/notification.js';
 
 
 export let menu = {

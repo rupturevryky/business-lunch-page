@@ -1,7 +1,7 @@
 // orderForm.js
 
-import { menu, selectedDishes } from './main.js'; // Импортируем menu и dishes
-import { inputPopupText } from './notification.js';
+import { menu, selectedDishes } from '../main.js'; // Импортируем menu и dishes
+import { inputPopupText } from '../place_order/notification.js';
 
 export const btn_order_update = (dishes) => {  // Принимаем dishes как параметр
 
