@@ -1,7 +1,7 @@
-import { viewOrderModal } from './modalWindows.js';
+import { viewOrderModal, editOrderModal, deleteOrderModal } from './modalWindows.js';
 
 
-const date_to_human_readable = (isoString) => {
+export const date_to_human_readable = (isoString) => {
     const date = new Date(isoString);
 
     // Получаем компоненты даты
@@ -16,7 +16,7 @@ const date_to_human_readable = (isoString) => {
     return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
 
-const id_to_names = (object, dishes) => {
+export const id_to_names = (object, dishes) => {
     let res = [];
 
     for (const key in object) {
@@ -71,18 +71,12 @@ export const orders_page = (dishes) => {
     icons ? icons.forEach(icon => icon.style.cursor = 'pointer') : null
 
     let trashes = document.querySelectorAll('.bi-trash')
-    trashes ? trashes.forEach(trash => trash.addEventListener('click', trash_handler)) : null
+    trashes ? trashes.forEach(trash => trash.addEventListener('click', (event) => deleteOrderModal(dishes, event.currentTarget.id))) : null
 
     let views = document.querySelectorAll('.bi-eye')
     views ? views.forEach(view => view.addEventListener('click', (event) => viewOrderModal(dishes, event.currentTarget.id))) : null
 
+    let edits = document.querySelectorAll('.bi-pen')
+    edits ? edits.forEach(edit => edit.addEventListener('click', (event) => editOrderModal(dishes, event.currentTarget.id))) : null
 }
-orders_page()
-
-const trash_handler = (event) => {
-    const id = event.currentTarget.id;
-    localStorage.removeItem(`${id}_pushed_order`)
-    const row = document.querySelector(`.order_table_row[id="${id}"]`);
-    row ? row.remove() : null
-
-}
+// orders_page()

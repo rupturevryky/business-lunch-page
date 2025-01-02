@@ -34,7 +34,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Просмотр заказа</h2>
-                    <button onclick="closeModal('viewOrderModal')">&times;</button>
+                    <button type="button" onclick="closeModal('viewOrderModal')">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p class="order_date"><strong>Дата оформления:</strong> 23.11.2024 20:01</p>
@@ -49,9 +49,9 @@
                     <div class="order_content">
                         <!-- <p ><strong>Основное блюдо:</strong> Жареная картошка с грибами (150₽)</p>
                         <p><strong>Напиток:</strong> Зелёный чай (100₽)</p>
-                        <p><strong>Десерт:</strong> Чизкейк (240₽)</p>
-                        <p><strong>Стоимость:</strong> 490₽</p> -->
+                        <p><strong>Десерт:</strong> Чизкейк (240₽)</p>-->
                     </div>
+                    <p class="order_sum"><strong>Стоимость:</strong> 490₽</p>
 
                 </div>
                 <div class="modal-footer">
@@ -61,43 +61,58 @@
         </div>
 
         <!-- Модальное окно редактирования заказа -->
-        <div class="modal" id="editOrderModal">
+        <form class="modal order-form" id="editOrderModal" method="PUT">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Редактирование заказа</h2>
-                    <button onclick="closeModal('editOrderModal')">&times;</button>
+                    <button type="button" onclick="closeModal('editOrderModal')">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p><strong>Дата оформления:</strong> 23.11.2024 20:01</p>
                     <h3>Доставка</h3>
-                    <input class="input-field" type="text" placeholder="Имя получателя" value="Иванов Иван Иванович">
-                    <input class="input-field" type="text" placeholder="Адрес доставки"
-                        value="г. Москва, ул. Большая Семёновская, 38">
-                    <input class="input-field" type="time" value="21:00">
-                    <input class="input-field" type="tel" placeholder="Телефон" value="+74952230523">
-                    <input class="input-field" type="email" placeholder="Email" value="example@mospolytech.ru">
-                    <textarea class="input-field" rows="3">Позвонить от поста охраны.</textarea>
+                    <p><strong>Имя получателя</strong></p>
+                    <input class="input-field name" type="text" placeholder="Имя получателя">
+                    <p><strong>Адрес доставки</strong></p>
+                    <input class="input-field address" type="text" placeholder="Адрес доставки">
+                    <p><strong>Время доставки</strong></p>
+                    <input class="input-field time" type="time">
+                    <p><strong>Телефон</strong></p>
+                    <input class="input-field tel" type="tel" placeholder="Телефон">
+                    <p><strong>Почта</strong></p>
+                    <input class="input-field email" type="email" placeholder="Email">
+                    <p><strong>Комментарий к заказу</strong></p>
+                    <textarea class="input-field comment" rows="3"></textarea>
                     <h3>Состав заказа</h3>
-                    <p><strong>Основное блюдо:</strong> Жареная картошка с грибами (150₽)</p>
-                    <p><strong>Напиток:</strong> Зелёный чай (100₽)</p>
-                    <p><strong>Десерт:</strong> Чизкейк (240₽)</p>
-                    <p><strong>Стоимость:</strong> 490₽</p>
+                    <div class="edit_order_content"></div>
+                    <h3 class="edit_order_sum">Стоимость:</h3>
+
                 </div>
                 <div class="modal-footer">
                     <button class="cancel" onclick="closeModal('editOrderModal')">Отмена</button>
-                    <button>Сохранить</button>
+                    <button type="submit" class="form_button" id="form_button">Сохранить</button>
                 </div>
             </div>
-        </div>
+        </form>
+
+        <!-- Модальное окно удаления заказа -->
+        <form class="modal" id="deleteOrderModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Удаление заказа</h2>
+                    <button type="button" onclick="closeModal('deleteOrderModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы уверены, что хотите удалить заказ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="closeModal('deleteOrderModal')">Отмена</button>
+                    <button style="background-color: #d9534f; color: white;">Да</button>
+                </div>
+            </div>
+        </form>
 
         <script>
-            function openModal(id) {
-                document.getElementById(id).style.display = 'flex';
-            }
-
-            function closeModal(id) {
-                document.getElementById(id).style.display = 'none';
-            }
+            const closeModal = (id) => document.getElementById(id).style.display = 'none';
         </script>
 
 

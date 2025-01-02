@@ -13,15 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addNewIcons(block, images) {
 
-        const createPText = (path) => {
-            if (path.indexOf("soup") > -1) return "Суп";
-            else if (path.indexOf("main") > -1) return "Главное блюдо";
-            else if (path.indexOf("salad") > -1) return "Салат/Стартер";
-            else if (path.indexOf("drink") > -1) return "Напиток";
-            else if (path.indexOf("desert") > -1) return "Десерт";
-            else return "Alt";
-        }
-
         // Удаляем существующие иконки
         block.innerHTML = '';
 
@@ -48,3 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         addNewIcons(block, comdos[index]);
     });
 })
+
+export const createPText = (path) => {
+    if (path.indexOf("soup") > -1) return "Суп";
+    else if (path.indexOf("main") > -1) return "Главное блюдо";
+    else if (path.indexOf("salad") > -1) return "Салат/Стартер";
+    else if (path.indexOf("drink") > -1 || path.indexOf("beverages") > -1) return "Напиток";
+    else if (path.indexOf("desert") > -1 || path.indexOf("desserts") > -1) return "Десерт";
+    else return "Alt";
+}
