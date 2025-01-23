@@ -98,8 +98,6 @@ export const editOrderModal = (dishes, id) => {
                 formData.append(dish, thisOrder[dish]);
             formData.append('order_date_change', new Date().toISOString())
 
-            console.log("thisOrder", thisOrder);
-
             try {
                 // Отправляем данные на сервер с использованием fetch
                 const response = await fetch('https://httpbin.org/post', {

@@ -78,16 +78,16 @@ export function displayDishes(dishes) {
             if (dish.category === 'soup') {
                 if ((menu.soup.State && dish.kind == menu.soup.State) || !menu.soup.State)
                     soupContainer.appendChild(card);
-            } else if (dish.category === 'main_course') {
+            } else if (dish.category === 'main-course') {
                 if ((menu.main_course.State && dish.kind == menu.main_course.State) || !menu.main_course.State)
                     mainContainer.appendChild(card);
-            } else if (dish.category === 'salads_starters') {
+            } else if (dish.category === 'salad') {
                 if ((menu.salads_starters.State && dish.kind == menu.salads_starters.State) || !menu.salads_starters.State)
                     saladsContainer.appendChild(card);
-            } else if (dish.category === 'beverages') {
+            } else if (dish.category === 'drink') {
                 if ((menu.beverages.State && dish.kind == menu.beverages.State) || !menu.beverages.State)
                     drinkContainer.appendChild(card);
-            } else if (dish.category === 'desserts') {
+            } else if (dish.category === 'dessert') {
                 if ((menu.desserts.State && dish.kind == menu.desserts.State) || !menu.desserts.State)
                     dessertsContainer.appendChild(card);
             }

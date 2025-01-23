@@ -2,7 +2,7 @@
 
 export async function loadDishes() {
     try {
-        const response = await fetch('http://127.0.0.1:3000/dishes');
+        const response = await fetch('http://lab8-api.std-900.ist.mospolytech.ru/labs/api/dishes?api_key=ee12b186-ceba-460f-9ca9-cb99bd91aedc');
         if (!response.ok) {
             throw new Error(`Ошибка HTTP: ${response.status}`);
         }
