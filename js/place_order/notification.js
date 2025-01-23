@@ -67,10 +67,10 @@ export const inputPopupText = () => {
 
     let popupText = document.querySelector('.popup p')
     let state = 0,
-        desserts = (!localStorage.getItem("desserts") || localStorage.getItem("desserts") == "NULL,0") ? false : true,
-        beverages = (!localStorage.getItem("beverages") || localStorage.getItem("beverages") == "NULL,0") ? false : true,
-        main_course = (!localStorage.getItem("main_course") || localStorage.getItem("main_course") == "NULL,0") ? false : true,
-        salads_starters = (!localStorage.getItem("salads_starters") || localStorage.getItem("salads_starters") == "NULL,0") ? false : true,
+        desserts = (!localStorage.getItem("dessert") || localStorage.getItem("dessert") == "NULL,0") ? false : true,
+        beverages = (!localStorage.getItem("drink") || localStorage.getItem("drink") == "NULL,0") ? false : true,
+        main_course = (!localStorage.getItem("main-course") || localStorage.getItem("main-course") == "NULL,0") ? false : true,
+        salads_starters = (!localStorage.getItem("salad") || localStorage.getItem("salad") == "NULL,0") ? false : true,
         soup = (!localStorage.getItem("soup") || localStorage.getItem("soup") == "NULL,0") ? false : true;
 
     if (!desserts && !beverages && !main_course && !salads_starters && !soup) {

@@ -13,6 +13,9 @@ export const btn_order_update = (dishes) => {  // Принимаем dishes ка
             const selectedDish = dishes.find(dish => dish.keyword === dishKeyword); // Используем dishes
 
             if (selectedDish) {
+                // console.log(selectedDish);
+                // console.log(menu);
+
                 menu[selectedDish.category].selected = true;
                 menu[selectedDish.category].now_dish = dishKeyword;
 

@@ -45,10 +45,10 @@ const set_form_food = (dishes) => {
 
             let dish;
             if (key == "soup") dish = "Суп"
-            if (key == "main_course") dish = "Главное блюдо"
-            if (key == "beverages") dish = "Напиток"
-            if (key == "salads_starters") dish = "Салат или стартер"
-            if (key == "desserts") dish = "Десерт"
+            if (key == "main-course") dish = "Главное блюдо"
+            if (key == "drink") dish = "Напиток"
+            if (key == "salad") dish = "Салат или стартер"
+            if (key == "dessert") dish = "Десерт"
             if (name) {
                 displayElement.innerHTML = `<strong>${dish}:<br></strong> ${name} ${value[1]}₽`
                 displayElement.style.display = 'block'; // Отображаем категорию

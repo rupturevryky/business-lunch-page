@@ -79,16 +79,16 @@ export function displayDishes(dishes) {
                 if ((menu.soup.State && dish.kind == menu.soup.State) || !menu.soup.State)
                     soupContainer.appendChild(card);
             } else if (dish.category === 'main-course') {
-                if ((menu.main_course.State && dish.kind == menu.main_course.State) || !menu.main_course.State)
+                if ((menu["main-course"].State && dish.kind == menu["main-course"].State) || !menu["main-course"].State)
                     mainContainer.appendChild(card);
             } else if (dish.category === 'salad') {
-                if ((menu.salads_starters.State && dish.kind == menu.salads_starters.State) || !menu.salads_starters.State)
+                if ((menu.salad.State && dish.kind == menu.salad.State) || !menu.salad.State)
                     saladsContainer.appendChild(card);
             } else if (dish.category === 'drink') {
-                if ((menu.beverages.State && dish.kind == menu.beverages.State) || !menu.beverages.State)
+                if ((menu.drink.State && dish.kind == menu.drink.State) || !menu.drink.State)
                     drinkContainer.appendChild(card);
             } else if (dish.category === 'dessert') {
-                if ((menu.desserts.State && dish.kind == menu.desserts.State) || !menu.desserts.State)
+                if ((menu.dessert.State && dish.kind == menu.dessert.State) || !menu.dessert.State)
                     dessertsContainer.appendChild(card);
             }
         });
@@ -96,8 +96,8 @@ export function displayDishes(dishes) {
 
     insert_cards();
     soupHeader.appendChild(createDishKind(menu.soup, 'soup'));
-    mainHeader.appendChild(createDishKind(menu.main_course, 'main_course'));
-    saladsHeader.appendChild(createDishKind(menu.salads_starters, 'salads_starters'));
-    drinkHeader.appendChild(createDishKind(menu.beverages, 'beverages'));
-    dessertsHeader.appendChild(createDishKind(menu.desserts, 'desserts'));
+    mainHeader.appendChild(createDishKind(menu["main-course"], 'main_course'));
+    saladsHeader.appendChild(createDishKind(menu.salad, 'salads_starters'));
+    drinkHeader.appendChild(createDishKind(menu.drink, 'beverages'));
+    dessertsHeader.appendChild(createDishKind(menu.dessert, 'desserts'));
 }

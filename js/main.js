@@ -17,25 +17,25 @@ export let menu = {
         State: '',
         Btns: ["мясной", "рыбный", "вегетарианский"]
     },
-    main_course: {
+    "main-course": {
         now_dish: '',
         selected: false,
         State: '',
         Btns: ["мясное", "рыбное", "вегетарианское"]
     },
-    salads_starters: {
+    salad: {
         now_dish: '',
         selected: false,
         State: '',
         Btns: ["мясной", "рыбный", "вегетарианский"]
     },
-    beverages: {
+    drink: {
         now_dish: '',
         selected: false,
         State: '',
         Btns: ["холодный", "горячий"],
     },
-    desserts: {
+    dessert: {
         now_dish: '',
         selected: false,
         State: '',
