@@ -49,8 +49,7 @@ export let selectedDishes = { soup: null, main_course: null, beverages: null, sa
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Загружаем блюда
-        dishes = await loadDishes(); // Загружаем блюда и сохраняем их в dishes  
-        console.log(dishes);
+        dishes = await loadDishes(); // Загружаем блюда и сохраняем их в dishes
 
 
         if (dishes.length > 0) {
